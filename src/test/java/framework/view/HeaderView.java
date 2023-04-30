@@ -5,21 +5,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import java.time.Duration;
 
-public class HeaderNavView {
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+
+public class HeaderView {
 
     private SelenideElement navigationPanel = $(By.xpath("//nav/ul"));
 
+    private SelenideElement counterLabel = $(".counter-number");
+    private SelenideElement counterLoader = $("._block-content-loading");
 
-    public HeaderNavView clickButton(Tab tab) {
-        getButton(tab).click();
+    public HeaderView openMiniCart() {
+        counterLabel.click();
         return this;
     }
 
-    public HeaderNavView openMainPae() {
-        open("");
+    public HeaderView checkCounterLabelValue(String value) {
+        counterLoader.shouldNot(visible, Duration.ofSeconds(2));
+        counterLabel.shouldHave(text(value));
+        return this;
+    }
+
+    public HeaderView clickButton(Tab tab) {
+        getButton(tab).click();
         return this;
     }
 
