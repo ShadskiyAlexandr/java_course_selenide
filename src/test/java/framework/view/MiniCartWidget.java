@@ -4,12 +4,12 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MiniCartWidget {
 
-    private SelenideElement checkoutButton = $(".top-cart-btn-checkout");
+    private SelenideElement checkoutButton = $("#top-cart-btn-checkout");
     private SelenideElement miniCartContent = $(".minicart-items");
     private ElementsCollection productItems = miniCartContent.$$(".product-item");
     private By productItemName = By.cssSelector(".product-item-name");
@@ -24,5 +24,13 @@ public class MiniCartWidget {
     public boolean checkIfProductInCart(String name) {
         int count = productItems.filter(text(name)).size();
         return count == 1;
+    }
+
+    public MiniCartWidget clickCheckoutButton() {
+        checkoutButton
+                .shouldBe(visible)
+                .shouldBe(enabled)
+                .click();
+        return this;
     }
 }

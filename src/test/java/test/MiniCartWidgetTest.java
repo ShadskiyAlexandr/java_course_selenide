@@ -1,14 +1,14 @@
 package test;
 
 import framework.content.BaseContent;
+import framework.content.ShowcasePage;
 import framework.view.HeaderView;
-import framework.view.ProductCardGridView;
 import io.qameta.allure.Feature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Add to cart tests")
+@DisplayName("Mini cart widget tests")
 @Feature("Cart")
 public class MiniCartWidgetTest extends BaseTest {
 
@@ -19,7 +19,7 @@ public class MiniCartWidgetTest extends BaseTest {
                 .clickHeaderNavigationButton(HeaderView.Tab.Men)
                 .clickLeftNavigationButton("Hoodies & Sweatshirts");
 
-        new ProductCardGridView()
+        new ShowcasePage()
                 .getCardByName("Frankie Sweatshirt")
                 .selectProductSize("S")
                 .selectProductColor("Green")
@@ -36,13 +36,16 @@ public class MiniCartWidgetTest extends BaseTest {
 
     @Test
     @DisplayName("Value of counter label - add a few item")
-    void CounterLabelTestSeveralItem() {
+    void CounterLabelSeveralItemTest() {
         new BaseContent()
             .clickHeaderNavigationButton(HeaderView.Tab.Men)
             .clickLeftNavigationButton("Jackets");
 
-        new ProductCardGridView()
-                .AddClothesToCart("Montana Wind Jacket", "M", "Red");
+        new ShowcasePage()
+                .AddClothesToCart(
+                        "Montana Wind Jacket",
+                        "M",
+                        "Red");
 
         new BaseContent()
                 .checkCounterLabelValue("2");
@@ -55,7 +58,7 @@ public class MiniCartWidgetTest extends BaseTest {
                 .clickHeaderNavigationButton(HeaderView.Tab.Gear)
                 .clickLeftNavigationButton("Watches");
 
-        new ProductCardGridView()
+        new ShowcasePage()
                 .getCardByName("Clamber Watch")
                 .clickAddCardToButton();
 

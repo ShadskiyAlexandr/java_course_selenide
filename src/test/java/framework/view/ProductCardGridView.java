@@ -22,13 +22,15 @@ public class ProductCardGridView {
     public ProductCardGridView getCardByName(String productName) {
         productCard = productCards.find(text(productName));
 
-        productCard.shouldNotBe(empty);
+        productCard
+                .scrollTo()
+                .shouldNotBe(empty);
         return this;
     }
 
     public ProductCardGridView selectProductSize(String size) {
         productCard.$$(productSizes)
-                .find(text(size))
+                .find(exactText(size))
                 .shouldNotBe(empty)
                 .click();
         return this;

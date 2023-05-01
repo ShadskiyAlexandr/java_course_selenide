@@ -7,8 +7,7 @@ import org.openqa.selenium.By;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class HeaderView {
@@ -19,12 +18,15 @@ public class HeaderView {
     private SelenideElement counterLoader = $("._block-content-loading");
 
     public HeaderView openMiniCart() {
-        counterLabel.click();
+        counterLabel
+                .scrollTo()
+                .shouldBe(enabled, Duration.ofSeconds(5))
+                .click();
         return this;
     }
 
     public HeaderView checkCounterLabelValue(String value) {
-        counterLoader.shouldNot(visible, Duration.ofSeconds(2));
+        counterLoader.shouldNotBe(visible, Duration.ofSeconds(5));
         counterLabel.shouldHave(text(value));
         return this;
     }

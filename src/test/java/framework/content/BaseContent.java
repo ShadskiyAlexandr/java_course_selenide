@@ -25,6 +25,8 @@ public class BaseContent {
         this.miniCartWidget = new MiniCartWidget();
     }
 
+    private SelenideElement loader = $(".loader");
+
     private SelenideElement pageHeader = $("[data-ui-id='page-title-wrapper']");
     private SelenideElement addSuccessMessage = $(".message-success");
 
@@ -78,6 +80,17 @@ public class BaseContent {
     @Step("Check visibility of 'Success' message")
     public BaseContent checkSuccessMessage() {
         addSuccessMessage.shouldBe(visible);
+        return this;
+    }
+
+    @Step("Check visibility of 'Success' message")
+    public BaseContent clickProceedToCheckout() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        miniCartWidget.clickCheckoutButton();
         return this;
     }
 
