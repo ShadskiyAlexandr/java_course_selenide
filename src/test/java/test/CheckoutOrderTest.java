@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Header navigation tests")
-@Feature("Navigation")
+@DisplayName("Proceed to checkout tests")
+@Feature("Order")
 public class CheckoutOrderTest extends BaseTest{
 
     @BeforeEach
