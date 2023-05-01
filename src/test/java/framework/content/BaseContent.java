@@ -8,6 +8,7 @@ import framework.view.MiniCartWidget;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -25,6 +26,7 @@ public class BaseContent {
     }
 
     private SelenideElement pageHeader = $("[data-ui-id='page-title-wrapper']");
+    private SelenideElement addSuccessMessage = $(".message-success");
 
     @Step("Open the Main page")
     public BaseContent openMainPage() {
@@ -70,6 +72,12 @@ public class BaseContent {
                 .checkIfProductInCart(productName);
 
         assertTrue(deleted, String.format("The product %s wasn't deleted", productName));
+        return this;
+    }
+
+    @Step("Check visibility of 'Success' message")
+    public BaseContent checkSuccessMessage() {
+        addSuccessMessage.shouldBe(visible);
         return this;
     }
 

@@ -29,7 +29,8 @@ public class CartTest extends BaseTest {
     @Test
     @DisplayName("Value of counter label - add a one item")
     void CounterLabelTest() {
-        new HeaderView()
+        new BaseContent()
+                .checkSuccessMessage()
                 .checkCounterLabelValue("1");
     }
 
