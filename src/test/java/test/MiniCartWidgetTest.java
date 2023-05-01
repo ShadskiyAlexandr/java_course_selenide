@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Add to cart tests")
 @Feature("Cart")
-public class CartTest extends BaseTest {
+public class MiniCartWidgetTest extends BaseTest {
 
     @BeforeEach
     void addProductToCard() {
