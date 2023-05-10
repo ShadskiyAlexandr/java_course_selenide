@@ -13,7 +13,7 @@ public class CheckoutOrderTest extends BaseTest{
 
     @BeforeEach
     void addProductToCard() {
-        new BaseContent()
+        new ShowcasePage()
                 .openMainPage()
                 .clickHeaderNavigationButton(HeaderView.Tab.Men)
                 .clickLeftNavigationButton("Hoodies & Sweatshirts");

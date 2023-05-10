@@ -14,7 +14,7 @@ public class MiniCartWidgetTest extends BaseTest {
 
     @BeforeEach
     void addProductToCard() {
-        new BaseContent()
+        new ShowcasePage()
                 .openMainPage()
                 .clickHeaderNavigationButton(HeaderView.Tab.Men)
                 .clickLeftNavigationButton("Hoodies & Sweatshirts");
@@ -37,7 +37,7 @@ public class MiniCartWidgetTest extends BaseTest {
     @Test
     @DisplayName("Value of counter label - add a few item")
     void CounterLabelSeveralItemTest() {
-        new BaseContent()
+        new ShowcasePage()
             .clickHeaderNavigationButton(HeaderView.Tab.Men)
             .clickLeftNavigationButton("Jackets");
 
@@ -45,24 +45,20 @@ public class MiniCartWidgetTest extends BaseTest {
                 .AddClothesToCart(
                         "Montana Wind Jacket",
                         "M",
-                        "Red");
-
-        new BaseContent()
+                        "Red")
                 .checkCounterLabelValue("2");
     }
 
     @Test
     @DisplayName("Delete product from card")
     void DeleteFromCartTest() {
-        new BaseContent()
+        new ShowcasePage()
                 .clickHeaderNavigationButton(HeaderView.Tab.Gear)
                 .clickLeftNavigationButton("Watches");
 
         new ShowcasePage()
                 .getCardByName("Clamber Watch")
-                .clickAddCardToButton();
-
-        new BaseContent()
+                .clickAddCardToButton()
                 .openMiniCartWidget()
                 .deleteProductFromMiniCartByName("Clamber Watch")
                 .checkCounterLabelValue("1");
